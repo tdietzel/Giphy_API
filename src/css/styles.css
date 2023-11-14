@@ -1,7 +1,44 @@
+body {
+    background-color: #282c35;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: 50vh;
+}
+#displayGif {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+img {
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+img:hover {
+    transform: scale(1.1);
+}
+h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+}
+button {
+    padding: 10px;
+    background-color: #61dafb;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }

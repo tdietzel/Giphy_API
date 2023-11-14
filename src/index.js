@@ -2,14 +2,19 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
-function printGiphs(apiResponse) {
-  console.log(apiResponse);
-  const gifUrl = apiResponse.data[0].bitly_gif_url;
-  console.log("GIF URL:", gifUrl);
-  document.querySelector("img#displayGiphy").setAttribute("src", `${apiResponse.data[0].images.original.url}`);
+function printGif(apiResponse) {
+  const div = document.querySelector("div#displayGif");
+
+  apiResponse.data.forEach((gif) => {
+    const img = document.createElement("img");
+    img.src = `${gif.images.original.url}`;
+    img.height = 200;
+    img.width = 200;
+    div.appendChild(img);
+  });
 }
 
-function getGiph(userSearch) {
+function getGif(userSearch) {
   let request = new XMLHttpRequest();
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${userSearch}&limit=5&offset=0&rating=g&lang=en`;
 
@@ -17,7 +22,7 @@ function getGiph(userSearch) {
     const response = JSON.parse(request.responseText);
     console.log("response: " + response + "responseText: " + request.status);
     if(request.status === 200) {
-      printGiphs(response);
+      printGif(response);
     } else {
       console.log("error");
     }
@@ -30,7 +35,8 @@ function handleFormSubmission(event) {
   event.preventDefault();
   const userSearch = document.querySelector("input#giphySearchInput").value;
   document.querySelector("input#giphySearchInput").value = '';
-  getGiph(userSearch);
+  document.querySelector("div#displayGif").innerHTML = null;
+  getGif(userSearch);
 }
 
 window.addEventListener("load", () => {
