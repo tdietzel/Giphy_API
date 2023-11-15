@@ -20,11 +20,10 @@ function getGif(userSearch) {
 
   request.addEventListener("loadend", () => {
     const response = JSON.parse(request.responseText);
-    console.log("response: " + response + "responseText: " + request.status);
     if(request.status === 200) {
       printGif(response);
     } else {
-      console.log("error");
+      window.alert("status: failed");
     }
   });
   request.open("GET", url, true);
