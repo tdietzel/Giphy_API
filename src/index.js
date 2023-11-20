@@ -16,6 +16,7 @@ function printGif(apiResponse) {
 
 function getGif(userSearch) {
   let request = new XMLHttpRequest();
+  // https://developers.giphy.com/docs/api/
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=${userSearch}&limit=5&offset=0&rating=g&lang=en`;
 
   request.addEventListener("loadend", () => {
